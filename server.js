@@ -76,11 +76,31 @@ function getJSONObjectForMovieRequirement(req){
         }
     });
 
-
+    router.route('/testcollection')
+    .delete(authController.isAuthenticated, (req, res) => {
+        console.log(req.body);
+        res = res.status(200);
+        if (req.get('Content-Type')) {
+            res = res.type(req.get('Content-Type'));
+        }
+        var o = getJSONObjectForMovieRequirement(req);
+        res.json(o);
+    }
+    )
+    .put(authJwtController.isAuthenticated, (req, res) => {
+        console.log(req.body);
+        res = res.status(200);
+        if (req.get('Content-Type')) {
+            res = res.type(req.get('Content-Type'));
+        }
+        var o = getJSONObjectForMovieRequirement(req);
+        res.json(o);
+    }
+    );
 //FOR TESTING ONLY
-app.use('/',router);
-app.listen(process.env.PORT || 8888);
-module.exports = app; 
+app.use('/', router);
+app.listen(process.env.PORT || 8080);
+module.exports = app; // for testing only
 //END TESTING 
 
 
