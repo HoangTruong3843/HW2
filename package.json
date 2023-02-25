@@ -1,0 +1,32 @@
+{
+  "name": "csc3916_hw2",
+  "version": "1.0.0",
+  "description": "WEB API 3916 HOMEWORK 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoangTruong3843/HW2.git"
+  },
+  "keywords": [
+    "movie"
+  ],
+  "author": "Hoang Truong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HoangTruong3843/HW2/issues"
+  },
+  "homepage": "https://github.com/HoangTruong3843/HW2#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.0",
+    "passport": "^0.6.0"
+  }
+}
