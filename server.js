@@ -8,6 +8,7 @@ var express = require('express');
 var http = require('http');
 var body_parser = require('body-parser');
 var passport = require('passport');
+var authController = require('./auth');
 db = require('./db')(); //This is a hack :D, to pull from db.js file
 var jwt = require('jsonwebtoken');
 var cors = require('cors');
