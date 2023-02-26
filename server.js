@@ -76,6 +76,7 @@ function getJSONObjectForMovieRequirement(req){
         }
     });
 
+    // This is just an example! not used
     router.route('/testcollection')
     .delete(authController.isAuthenticated, (req, res) => {
         console.log(req.body);
@@ -97,6 +98,64 @@ function getJSONObjectForMovieRequirement(req){
         res.json(o);
     }
     );
+    // end this example, not used
+
+    //based on that example ,req asks to make a /movie have HTTP methods: get, post,put,delete,otherwise.
+    router.route('/movies')
+        .get((req,res) => {
+            //valid user
+            res.json({
+                status: 200,
+                msg: 'GET movies',
+                headers: req.headers,
+                query: req.query,
+                env: process.env.UNIQUE_KEY
+            });
+        })
+        .post((req,res) =>{
+            res.json({
+                status: 200,
+                msg: 'Movie Saved',
+                headers: req.headers,
+                query: req.query,
+                env: process.env.UNIQUE_KEY
+            });
+        })
+        .put(authJwtController.isAuthenticated,(req,res)=>{
+            console.log(req.body);
+            res = res.status(200).send({
+                success: true,
+                msg: 'Movie updated',
+                headers: req.headers,
+                query: req.query,
+                env: process.env.UNIQUE_KEY
+            });
+            if (req.get('Content-Type')) res = res.type(req.get('Content-Type'));
+            var o = getJSONObjectForMovieRequirement(req);
+            res.json(o);
+        })
+
+        .delete(authController.isAuthenticated,(req,res) => {
+            console.log(req.body);
+            res = res.status(200).send({
+                success: true,
+                msg: 'Movie deleted',
+                headers: req.headers,
+                query: req.query,
+                env: process.env.UNIQUE_KEY
+            })
+            if (req.get('Content-Type')) res = res.type(req.get('Content-Type'));
+            var o = getJSONObjectForMovieRequirement(req);
+            res.json(o);
+        });
+    
+    router.all('*',(req,res)=>{
+        res.json({
+            error: "It does not support the HTTP method."
+        });
+    });
+
+
 //FOR TESTING ONLY
 app.use('/', router);
 app.listen(process.env.PORT || 8080);
